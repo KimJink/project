@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{layouts/layout}">
+    <div layout:fragment="content">
+        Sample Project
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-6">
+                    <a th:href="@{/posts/save}" role="button" class="btn btn-primary">글 등록</a>
+                    <th:block th:if="${userName}">
+                        Logged in as: <span id="user" th:text="${userName}"></span>
+                        <a th:href="@{/logout}" class="btn btn-info active" role="button">Logout</a>
+                    </th:block>
+                    <th:block th:unless="${userName}">
+                        <a th:href="@{/oauth2/authorization/google}" class="btn btn-success active" role="button">Google Login</a>
+                        <a href="/oauth2/authorization/naver" class="btn btn-secondary active" role="button">Naver Login</a>
+                    </th:block>
+                </div>
+            </div>
+            <br>
+            <!-- 목록 출력 영역 -->
+            <table class="table table-horizontal table-bordered">
+                <thead class="thead-strong">
+                <tr>
+                    <th>게시글번호</th>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>최종수정일</th>
+                </tr>
+                </thead>
+                <tbody id="tbody">
+                    <tr th:each="posts : ${posts}">
+                        <td th:text="${posts.getId()}"></td>
+                        <td><a href="#" th:href="@{/posts/update/{id}(id=${posts.getId()})}" th:text="${posts.getTitle()}"></a></td>
+                        <td th:text="${posts.getAuthor()}"></td>
+                        <td th:text="${posts.getModifiedDate()}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</html>
