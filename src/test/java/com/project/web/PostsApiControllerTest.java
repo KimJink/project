@@ -15,6 +15,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 
 import java.util.List;
 
@@ -37,6 +38,7 @@ public class PostsApiControllerTest {
         postsRepository.deleteAll();
     }
 
+    @WithMockUser(roles = "USER")
     @Test
     public void registPosts() {
         //given
@@ -60,7 +62,7 @@ public class PostsApiControllerTest {
         assertThat(all.get(0).getTitle()).isEqualTo(title);
         assertThat(all.get(0).getContent()).isEqualTo(content);
     }
-
+    @WithMockUser(roles = "USER")
     @Test
     public void updatePosts() {
         //given
