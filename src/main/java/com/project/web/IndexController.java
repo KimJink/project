@@ -4,6 +4,7 @@ import com.project.config.auth.LoginUser;
 import com.project.config.auth.dto.SessionUser;
 import com.project.service.posts.PostsService;
 import com.project.web.dto.PostsResponseDto;
+import com.project.web.dto.SearchModel;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
